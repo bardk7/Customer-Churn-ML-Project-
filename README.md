@@ -8,6 +8,12 @@ Predict telecom customer churn using a tuned LightGBM pipeline, deployed as a RE
 ## Overview
 This project tackles the critical business problem of telecommunications customer churn. By analyzing demographic, account, and service usage data, we built an end-to-end Machine Learning pipeline to identify customers at high risk of leaving. The final solution leverages a tuned LightGBM model (handling class imbalance via SMOTE), exposed via a FastAPI backend, and consumed by an interactive Streamlit frontend for retention agents.
 
+## 🚀 Live Demo
+- **App**: [tchurn-predictor.streamlit.app](https://tchurn-predictor.streamlit.app/)
+- **API**: [churn-api-oq2x.onrender.com](https://churn-api-oq2x.onrender.com) ([docs](https://churn-api-oq2x.onrender.com/docs))
+
+> **Note:** The API is hosted on Render's free tier and may take 30-60s to wake up on the first request after inactivity. Subsequent requests are fast.
+
 ## Project Architecture
 ```text
 .
@@ -52,6 +58,8 @@ The final tuned `LGBMClassifier` was evaluated on an untouched 20% test set, ach
 
 ## Installation & Setup
 
+The fastest way to try the project is the [live demo](#-live-demo) above — no setup required. For local development:
+
 ### 1. Running via Docker Compose (Recommended)
 You must have Docker Desktop or a running Docker daemon.
 ```bash
@@ -76,11 +84,13 @@ streamlit run app/app.py
 ```
 
 ## API Usage
-**GET /health**
+**GET /health** (live)
 ```bash
-curl -X GET "http://127.0.0.1:8000/health"
+curl -X GET "https://churn-api-oq2x.onrender.com/health"
 # Response: {"status": "ok"}
 ```
+
+Or locally: `curl -X GET "http://127.0.0.1:8000/health"`
 
 **POST /predict**
 ```bash
@@ -122,6 +132,9 @@ To run the automated test suite (including model pipeline and API endpoint tests
 ```bash
 python -m pytest -q
 ```
+
+## Deployment Architecture
+The API is deployed on **Render** (Docker, free tier) via a [`render.yaml`](render.yaml) Blueprint for reproducible one-click deploys. The frontend is deployed on **Streamlit Community Cloud**, configured via an `API_URL` secret pointing at the live Render service — no hardcoded URLs in code.
 
 ## Development Process
 This repository was built using a structured, rigorously tested 27-milestone process (19 ML milestones + 8 deployment milestones). Every step was sequentially committed using Conventional Commits to ensure full reproducibility and a clean history.
