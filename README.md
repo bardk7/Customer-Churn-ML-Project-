@@ -8,9 +8,6 @@ Predict telecom customer churn using a tuned LightGBM pipeline, deployed as a RE
 ## Overview
 This project tackles the critical business problem of telecommunications customer churn. By analyzing demographic, account, and service usage data, we built an end-to-end Machine Learning pipeline to identify customers at high risk of leaving. The final solution leverages a tuned LightGBM model (handling class imbalance via SMOTE), exposed via a FastAPI backend, and consumed by an interactive Streamlit frontend for retention agents.
 
-## Demo / Screenshots
-*(Add a screenshot or GIF of the Streamlit app in action here: `docs/screenshot.png`)*
-
 ## Project Architecture
 ```text
 .
