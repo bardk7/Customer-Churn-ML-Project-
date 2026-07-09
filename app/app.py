@@ -3,7 +3,7 @@ import httpx
 import os
 import json
 
-API_URL = os.environ.get("API_URL", "http://localhost:8000")
+API_URL = os.getenv("API_URL", "http://localhost:8000")
 
 st.set_page_config(page_title="Customer Churn Predictor", page_icon="📊", layout="centered")
 st.title("📊 Customer Churn Predictor")
@@ -64,7 +64,7 @@ if submitted:
     }
 
     try:
-        with httpx.Client(timeout=60.0) as client:
+        with httpx.Client(timeout=90.0) as client:
             r = client.post(f"{API_URL}/predict", json=payload)
 
         if r.status_code == 200:
