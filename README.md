@@ -38,4 +38,69 @@ This project takes the public Telco Customer Churn dataset and applies a full ma
    ```
 
 ## Workflow
-The project follows a rigorous 19-milestone process, strictly adhering to conventional commits and rigorous testing.
+The project follows a rigorous 19-milestone ML phase process and an 8-milestone deployment phase, strictly adhering to conventional commits and rigorous testing.
+
+## Deployment
+
+The final trained LightGBM model is deployed alongside a FastAPI backend and a Streamlit frontend.
+
+### 1. Running via Docker Compose (Recommended)
+This requires Docker Desktop or a running Docker daemon.
+```bash
+docker-compose up --build -d
+```
+- **Streamlit Frontend**: `http://localhost:8501`
+- **FastAPI Backend**: `http://localhost:8000/docs`
+
+### 2. Running Locally (Virtual Environment)
+In two separate terminals:
+**Terminal 1 (API)**:
+```bash
+.\venv\Scripts\activate
+uvicorn api.main:app --host 127.0.0.1 --port 8000
+```
+**Terminal 2 (Frontend)**:
+```bash
+.\venv\Scripts\activate
+streamlit run app/app.py
+```
+
+### API Specification
+**POST /predict**
+Payload (JSON):
+```json
+{
+  "gender": "Female",
+  "SeniorCitizen": 0,
+  "Partner": "Yes",
+  "Dependents": "No",
+  "tenure": 12,
+  "PhoneService": "No",
+  "MultipleLines": "No phone service",
+  "InternetService": "DSL",
+  "OnlineSecurity": "No",
+  "OnlineBackup": "Yes",
+  "DeviceProtection": "No",
+  "TechSupport": "No",
+  "StreamingTV": "No",
+  "StreamingMovies": "No",
+  "Contract": "Month-to-month",
+  "PaperlessBilling": "Yes",
+  "PaymentMethod": "Electronic check",
+  "MonthlyCharges": 29.85,
+  "TotalCharges": "358.20"
+}
+```
+Response (JSON):
+```json
+{
+  "probability": 0.825,
+  "prediction": 1,
+  "risk_tier": "High"
+}
+```
+
+### Known Limitations
+- The model expects the specific 19 features outlined above.
+- TotalCharges must be passable as a float/numeric string, otherwise it defaults to 0.0.
+- Categorical variables strictly enforce exact spelling (e.g. `Fiber optic`, not `Fiber Optic`).
