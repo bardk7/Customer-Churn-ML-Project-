@@ -6,7 +6,7 @@ The goal of this project was to analyze telecom customer data to predict custome
 ## 2. Approach
 - **Data Preparation**: Cleaned and transformed demographic, service, and account data (7,043 customers).
 - **Modeling**: Evaluated 10 baseline machine learning models. We handled class imbalance using SMOTE. The top performing models were tree-based ensembles (CatBoost, LightGBM) and Logistic Regression.
-- **Tuning**: Hyperparameter tuning via cross-validation identified CatBoost as the best overall model, balancing high recall (catching churners) with strong precision (minimizing false alarms).
+- **Tuning**: Hyperparameter tuning via cross-validation identified LightGBM as the best overall model, balancing high recall (catching churners) with strong precision (minimizing false alarms).
 - **Interpretation**: Used SHAP (SHapley Additive exPlanations) to understand what drives the model's decisions at a granular level.
 
 ## 3. Key Drivers of Churn

@@ -15,10 +15,10 @@ During baseline evaluation, the top performers were:
 - **LightGBM**: Fast and highly performant.
 - **Logistic Regression**: A surprisingly strong and interpretable baseline that rivaled complex trees.
 
-We performed Hyperparameter Tuning using `RandomizedSearchCV` on the top three models. The **Tuned CatBoost** model emerged as the superior estimator.
+We performed Hyperparameter Tuning using `RandomizedSearchCV` on the top three models. The **Tuned LightGBM** model emerged as the superior estimator.
 
 ## 3. Final Conclusion & Performance Metrics
-The final selected model is the **Tuned CatBoostClassifier**. Evaluated on the untouched 20% test set, it achieved:
+The final selected model is the **Tuned LGBMClassifier**. Evaluated on the untouched 20% test set, it achieved:
 - **ROC-AUC**: 0.835
 - **Recall**: 0.68
 - **Precision**: 0.55

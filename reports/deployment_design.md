@@ -1,7 +1,7 @@
 # Deployment Design Document (M17)
 
 ## 1. Objective
-To deploy the tuned CatBoost Customer Churn prediction model (`best_churn_model.pkl`) into a production environment where it can score active customers and surface high-risk individuals to the retention team.
+To deploy the tuned LightGBM Customer Churn prediction model (`best_churn_model.pkl`) into a production environment where it can score active customers and surface high-risk individuals to the retention team.
 
 ## 2. Deployment Architecture Options
 
@@ -27,6 +27,6 @@ Given the business context, the most effective approach is a **Hybrid Strategy**
 
 ## 4. Technical Requirements
 - **Environment**: Docker container running Python 3.12.
-- **Dependencies**: `catboost`, `scikit-learn`, `pandas`, `shap`, `streamlit`.
+- **Dependencies**: `lightgbm`, `scikit-learn`, `pandas`, `shap`, `streamlit`.
 - **Model Storage**: Load `best_churn_model.pkl` from an S3 bucket or local volume.
 - **Data Source**: Secure read access to the customer data warehouse; write access to the `Customer_Risk_Scores` table.
