@@ -21,7 +21,7 @@ def encode_categoricals(df: pd.DataFrame) -> pd.DataFrame:
     Uses drop_first=True to avoid multicollinearity.
     """
     df = df.copy()
-    cat_cols = df.select_dtypes(include=['object', 'string']).columns.tolist()
+    cat_cols = df.select_dtypes(include=['object', 'string', 'category']).columns.tolist()
     df = pd.get_dummies(df, columns=cat_cols, drop_first=True, dtype=int)
     return df
 
